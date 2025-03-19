@@ -6,8 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gersy</title>
 </head>
+<style>
+    body {
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0b032c, #7e0202, #030002);
+        background-size: 200% 200%;
+        animation: gradientAnimation 10s ease infinite;
+        font-family: Arial, sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+</style>
 <body>
     <h1>MY PORTFOLIO</h1>
+    
     <img src="../4.1+Webpages/assets/images/cat.png" alt="">
     <h2>Here is what I learned in this first week.
         <hr>
