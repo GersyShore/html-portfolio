@@ -1,58 +1,265 @@
-<!-- TODO 1: Create the HTML Boilerplate -->
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gersy</title>
-</head>
-<style>
-    body {
-        height: 100vh;
-        margin: 0vb;
-        display:block;
-        align-items:center;
-        justify-content: center;
-        background: linear-gradient(135deg, #0b032c, #7e0202, #000000);
-        background-size: 500% 100%;
-        animation: gradientAnimation ease infinite 10s;
-        font-family:Verdana, Geneva, Tahoma, sans-serif;
-        color: #fa4444c0;
-        text-align: center;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sito di Film & Serie TV</title>
+  <style>
+    /* Reset di base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
     }
 
-    @keyframes gradientAnimation {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    body {
+      background-color: #fafafa;
     }
-</style>
+
+    /* Header / Navbar */
+    header {
+      width: 100%;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 2rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    /* Logo / Brand Name */
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #e5367a; /* colore principale simile a Dribbble */
+      text-decoration: none;
+    }
+
+    /* Menu principale */
+    nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #e5367a;
+    }
+
+    /* Bottoni Accesso/Registrazione */
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #e5367a;
+      background-color: #ffffff;
+      color: #e5367a;
+      cursor: pointer;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #e5367a;
+      color: #ffffff;
+    }
+
+    /* Hero / Sezione principale */
+    .hero {
+      width: 100%;
+      height: 70vh;
+      background: url('https://images.unsplash.com/photo-1517607644669-85b6ff1f78a2') center/cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      color: #ffffff;
+      position: relative;
+    }
+
+    /* Sovrapposizione scura per migliorare contrasto testo */
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    /* Barra di ricerca */
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .search-bar input {
+      flex: 1;
+      border: none;
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    .search-bar button {
+      background-color: #e5367a;
+      color: #ffffff;
+      border: none;
+      padding: 0.8rem 1rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background-color: #c92b65;
+    }
+
+    /* Sezione categorie (come "Discover", "Animation", ecc.) */
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem auto;
+      max-width: 1200px;
+      padding: 0 1rem;
+    }
+
+    .category-card {
+      background-color: #fff;
+      border: 1px solid #e2e2e2;
+      border-radius: 6px;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .category-card:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f2f2f2;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        display: none; /* da migliorare con un menu hamburger se necessario */
+      }
+      header {
+        justify-content: space-between;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
 <body>
-    <h1>MY PORTFOLIO</h1>
-    <img src="./assets/images/cat.png" alt="">
-    <h2>Here is what I learned in my first week.
-        <hr>
-        <a href="./public/birthday-invite.html">Birthday Project:</a>
-    </h2>
-    <h2>
-        <a href="./public/movie-ranking.html">Movie Project:</a>
-    </h2>
-    <h3><a href="./public/about.html">Click here to know more about me.</a>
-    </h3>
-    <h3><a href="./public/contact.html">Here you can find my contact.</a>
-    </h3>
+
+  <!-- Header / Navbar -->
+  <header>
+    <a href="#" class="logo">Film&TV</a>
+    <nav>
+      <ul>
+        <li><a href="#">Scopri</a></li>
+        <li><a href="#">Film</a></li>
+        <li><a href="#">Serie TV</a></li>
+        <li><a href="#">Novità</a></li>
+        <li><a href="#">Generi</a></li>
+      </ul>
+    </nav>
+    <div class="btn-container">
+      <a href="#" class="btn">Accedi</a>
+      <a href="#" class="btn">Registrati</a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Esplora il meglio di Film e Serie TV</h1>
+      <p>Scopri le ultime novità, i trailer, le recensioni e i consigli per il tuo prossimo binge-watching.</p>
+      <div class="search-bar">
+        <input type="text" placeholder="Cerca film o serie...">
+        <button type="button">Cerca</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sezione Categorie (simile ai tag 'Animation', 'Branding', ecc.) -->
+  <section class="categories">
+    <div class="category-card">Azione</div>
+    <div class="category-card">Commedia</div>
+    <div class="category-card">Dramma</div>
+    <div class="category-card">Thriller</div>
+    <div class="category-card">Romantico</div>
+    <div class="category-card">Fantasy</div>
+    <div class="category-card">Horror</div>
+    <div class="category-card">Documentari</div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Film&TV. Tutti i diritti riservati.</p>
+  </footer>
+  
 </body>
 </html>
-<!-- TODO 2: Add Your previous projects' HTML into the public folder -->
-
-<!-- TODO 3: Take screenshots of your project previews and add the images to the images folder -->
-
-<!-- TODO 4: Add titles/subtitles etc. -->
-
-<!-- TODO 5: Add a link to the project pages -->
-
-<!-- TODO 6: Add images to show the project previews
-HINT for TODO 6: You can use the height attribute set to 200 to make the image smaller:
-https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-height -->
-
-<!-- TODO 7: Add the Contact Me and About Me page links -->
